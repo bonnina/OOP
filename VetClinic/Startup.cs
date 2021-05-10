@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VetClinic.Data;
 using Microsoft.EntityFrameworkCore;
+using VetClinic.Models;
 
 namespace VetClinic
 {
@@ -22,6 +23,13 @@ namespace VetClinic
             services.AddRazorPages();
             services.AddDbContext<VetClinicContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("VetClinicContext")));
+
+            var optionsBuilder = new DbContextOptionsBuilder<VetClinicContext>();
+            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("VetClinicContext"));
+
+            var context = new VetClinicContext(optionsBuilder.Options);
+            var PatientList = new PatientsList(context);
+            services.AddSingleton<PatientsList>(PatientList);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
