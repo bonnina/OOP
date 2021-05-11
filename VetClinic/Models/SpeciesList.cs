@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using VetClinic.Data;
 using VetClinic.Models.DbModels;
 
@@ -56,12 +54,11 @@ namespace VetClinic.Models
             }
         }
 
-        public override List<Species> SearchBy(string property)
+        public Species SearchBy(string property)
         {
             return _context.Species
                 .Where(s => s.Name.Contains(property))
-                .Distinct()
-                .ToList();
+                .SingleOrDefault();
         }
     }
 }

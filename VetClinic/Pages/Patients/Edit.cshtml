@@ -5,34 +5,45 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Edit Patient</h1>
 
-<h4>Patient</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Patient.Id" />
+            <input type="hidden" asp-for="PatientView.Id" />
             <div class="form-group">
-                <label asp-for="Patient.Name" class="control-label"></label>
-                <input asp-for="Patient.Name" class="form-control" />
-                <span asp-validation-for="Patient.Name" class="text-danger"></span>
+                <label asp-for="PatientView.Name" class="control-label"></label>
+                <input asp-for="PatientView.Name" class="form-control" />
+                <span asp-validation-for="PatientView.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Patient.Age" class="control-label"></label>
-                <input asp-for="Patient.Age" class="form-control" />
-                <span asp-validation-for="Patient.Age" class="text-danger"></span>
+                <label asp-for="PatientView.Species" class="control-label"></label>
+                <input asp-for="PatientView.Species" class="form-control" />
+                <span asp-validation-for="PatientView.Species" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Patient.PhotoPath" class="control-label"></label>
-                <input asp-for="Patient.PhotoPath" class="form-control" />
-                <span asp-validation-for="Patient.PhotoPath" class="text-danger"></span>
+                <label asp-for="PatientView.Age" class="control-label"></label>
+                <input asp-for="PatientView.Age" class="form-control" />
+                <span asp-validation-for="PatientView.Age" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Patient.NotesPath" class="control-label"></label>
-                <input asp-for="Patient.NotesPath" class="form-control" />
-                <span asp-validation-for="Patient.NotesPath" class="text-danger"></span>
+                <label asp-for="PatientView.Photo" class="control-label"></label>
+                <br />
+                <label asp-for="PatientView.Photo" class="control-label">
+                    current - @Html.DisplayFor(model => model.PatientView.PhotoPath)
+                </label>
+                <input type="file" accept="image/jpeg, image/jpg,  image/png"
+                       asp-for="PatientView.Photo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PatientView.Notes" class="control-label"></label>
+                <br />
+                <label asp-for="PatientView.Notes" class="control-label">
+                    current - @Html.DisplayFor(model => model.PatientView.NotesPath)
+                </label>
+                <input type="file" asp-for="PatientView.Notes" class="form-control"/>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

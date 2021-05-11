@@ -45,8 +45,8 @@ namespace VetClinic.Models
                         Name = "Tim",
                         Species = context.Species.Where(s => s.Name == "dog").FirstOrDefault(),
                         Age = 2,
-                        PhotoPath = "dog.png",
-                        NotesPath = "cat.txt"
+                        PhotoPath = "dog.jpg",
+                        NotesPath = "dog.txt"
                     }
                 );
                 context.SaveChanges();

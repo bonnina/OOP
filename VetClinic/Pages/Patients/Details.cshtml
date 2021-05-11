@@ -9,21 +9,49 @@
 
 <div>
     <h4>Patient</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Patient.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Patient.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Patient.Age)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Patient.Age)
-        </dd>
-    </dl>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient.Species)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient.PhotoPath)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient.NotesPath)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Patient.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Patient.Species.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Patient.Age)
+                </td>
+                <td>
+                    <img src="../images/@Html.DisplayFor(model => model.Patient.PhotoPath)" style="width:100px;">
+                </td>
+                <td>
+                    <a href="../files/@Html.DisplayFor(model => model.Patient.NotesPath)" download>
+                        <img src="../images/download.png" alt="download" style="width:90px;">
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Patient.Id">Edit</a> |

@@ -28,8 +28,10 @@ namespace VetClinic
             optionsBuilder.UseSqlServer(Configuration.GetConnectionString("VetClinicContext"));
 
             var context = new VetClinicContext(optionsBuilder.Options);
-            var PatientList = new PatientsList(context);
-            services.AddSingleton<PatientsList>(PatientList);
+            var patientList = new PatientsList(context);
+            var speciesList = new SpeciesList(context);
+            services.AddSingleton<PatientsList>(patientList);
+            services.AddSingleton<SpeciesList>(speciesList);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

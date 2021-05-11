@@ -16,7 +16,5 @@ namespace VetClinic.Models
         public abstract void Edit(T item);
 
         public abstract void Delete(int? id);
-
-        public abstract List<T> SearchBy(string property);
     }
 }

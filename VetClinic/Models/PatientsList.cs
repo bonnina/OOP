@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using VetClinic.Data;
 using VetClinic.Models.DbModels;
@@ -9,14 +11,17 @@ namespace VetClinic.Models
     {
         private readonly VetClinicContext _context;
 
-        public PatientsList(VetClinicContext context)
+        public PatientsList(
+            VetClinicContext context)
         {
             _context = context;
         }
 
         public override List<Patient> GetAll()
         {
-            return _context.Patients.ToList();
+            return _context.Patients
+                .Include(p => p.Species)
+                .ToList();
         }
 
         public override Patient GetById(int? id)
@@ -39,8 +44,8 @@ namespace VetClinic.Models
                 patient.Name = item.Name;
                 patient.Species = item.Species;
                 patient.Age = item.Age;
-                patient.PhotoPath = item.PhotoPath;
-                patient.NotesPath = item.NotesPath;
+                patient.PhotoPath = item.PhotoPath ?? patient.PhotoPath;
+                patient.NotesPath = item.NotesPath ?? patient.NotesPath;
 
                 _context.SaveChanges();
             }
@@ -52,15 +57,29 @@ namespace VetClinic.Models
 
             if (patient != null)
             {
+                var rootPath = "wwwroot";
+                var photoPath = Path.Combine(rootPath, "images", patient.PhotoPath);
+                var notesPath = Path.Combine(rootPath, "files", patient.NotesPath);
+                File.Delete(photoPath);
+                File.Delete(notesPath);
+
                 _context.Patients.Remove(patient);
                 _context.SaveChanges();
             }
         }
 
-        public override List<Patient> SearchBy(string property)
+        public List<Patient> SearchBy(string property)
         {
             return _context.Patients
                 .Where(p => p.Name.Contains(property) || p.Species.Name.Contains(property))
+                .Distinct()
+                .ToList();
+        }
+
+        public List<Patient> SearchBy(int age)
+        {
+            return _context.Patients
+                .Where(p => p.Age == age)
                 .Distinct()
                 .ToList();
         }
