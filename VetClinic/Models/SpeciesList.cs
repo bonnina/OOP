@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using VetClinic.Data;
 using VetClinic.Models.DbModels;
@@ -35,7 +36,7 @@ namespace VetClinic.Models
         {
             var species = _context.Species.FirstOrDefault(e => e.Id == item.Id);
 
-            if (species != null)
+            if (species != null && IsValid(item.Name))
             {
                 species.Name = item.Name;
 
@@ -46,11 +47,16 @@ namespace VetClinic.Models
         public override void Delete(int? id)
         {
             var species = _context.Species.FirstOrDefault(e => e.Id == id);
+            bool hasPatients = _context.Patients.Any(p => p.Species.Id == id);
 
-            if (species != null)
+            if (species != null && !hasPatients)
             {
                 _context.Species.Remove(species);
                 _context.SaveChanges();
+            }
+            else
+            {
+                throw new InvalidOperationException();
             }
         }
 
@@ -59,6 +65,11 @@ namespace VetClinic.Models
             return _context.Species
                 .Where(s => s.Name.Contains(property))
                 .SingleOrDefault();
+        }
+
+        private bool IsValid(string name)
+        {
+            return !string.IsNullOrWhiteSpace(name) && !string.IsNullOrEmpty(name);
         }
     }
 }

@@ -31,6 +31,10 @@ th, td {
     float: right;
 }
 
+.message {
+    color: #e6005c;
+}
+
 
 .navbar-light .navbar-nav .nav-link {
     font-size: 20px;
@@ -66,7 +70,7 @@ label.current {
     background-color: #0099cc;
 }
 
-.btn-danger {
+.btn-danger, .btn-danger:hover, .btn-danger:active {
     background-color: #2eb82e;
     border-color: #29a329;
 }

@@ -70,7 +70,8 @@ namespace VetClinic.Pages.Patients
 
             if (species == null)
             {
-                _speciesList.Add(new Species
+                _speciesList.Add(
+                    new Models.DbModels.Species
                 {
                     Name = speciesName
                 });
