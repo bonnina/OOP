@@ -71,6 +71,14 @@ label.current {
     border-color: #29a329;
 }
 
+.btn-filter {
+    color: #0099cc;
+    background-color: #ffffff;
+    border-color: #8c8c8c;
+    border-width: 1px;
+    font-weight: bold;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
     background-color: #1b6ec2;

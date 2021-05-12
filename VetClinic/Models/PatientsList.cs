@@ -71,7 +71,9 @@ namespace VetClinic.Models
         public List<Patient> SearchBy(string property)
         {
             return _context.Patients
-                .Where(p => p.Name.Contains(property) || p.Species.Name.Contains(property))
+                .Where(p => p.Name.Contains(property) 
+                || p.Species.Name.Contains(property)
+                || p.Age.ToString().Contains(property))
                 .Distinct()
                 .ToList();
         }
