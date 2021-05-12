@@ -7,7 +7,6 @@
 
 <h1>Edit Patient</h1>
 
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
@@ -31,7 +30,7 @@
             <div class="form-group">
                 <label asp-for="PatientView.Photo" class="control-label"></label>
                 <br />
-                <label asp-for="PatientView.Photo" class="control-label">
+                <label asp-for="PatientView.Photo" class="control-label current">
                     current - @Html.DisplayFor(model => model.PatientView.PhotoPath)
                 </label>
                 <input type="file" accept="image/jpeg, image/jpg,  image/png"
@@ -40,7 +39,7 @@
             <div class="form-group">
                 <label asp-for="PatientView.Notes" class="control-label"></label>
                 <br />
-                <label asp-for="PatientView.Notes" class="control-label">
+                <label asp-for="PatientView.Notes" class="control-label current">
                     current - @Html.DisplayFor(model => model.PatientView.NotesPath)
                 </label>
                 <input type="file" asp-for="PatientView.Notes" class="form-control"/>
