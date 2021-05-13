@@ -58,10 +58,17 @@ namespace VetClinic.Models
             if (patient != null)
             {
                 var rootPath = "wwwroot";
-                var photoPath = Path.Combine(rootPath, "images", patient.PhotoPath);
-                var notesPath = Path.Combine(rootPath, "files", patient.NotesPath);
-                File.Delete(photoPath);
-                File.Delete(notesPath);
+
+                if (patient.PhotoPath != null &&!IsDefaultImage(patient.PhotoPath)) {
+                    var photoPath = Path.Combine(rootPath, "images", patient.PhotoPath);
+                    File.Delete(photoPath);
+                }
+
+                if (patient.NotesPath != null && !IsDefaultFile(patient.NotesPath))
+                {
+                    var notesPath = Path.Combine(rootPath, "files", patient.NotesPath);
+                    File.Delete(notesPath);
+                }
 
                 _context.Patients.Remove(patient);
                 _context.SaveChanges();
@@ -84,6 +91,24 @@ namespace VetClinic.Models
                 .Where(p => p.Age == age)
                 .Distinct()
                 .ToList();
+        }
+
+        private static bool IsDefaultImage(string imageName)
+        {
+            //images used to seed the DB
+            string image1 = "cat.png";
+            string image2 = "dog.jpg";
+
+            return imageName == image1 || imageName == image2;
+        }
+
+        private static bool IsDefaultFile(string fileName)
+        {
+            //files used to seed the DB
+            string file1 = "cat.txt";
+            string file2 = "dog.txt";
+
+            return fileName == file1 || fileName == file2;
         }
     }
 }

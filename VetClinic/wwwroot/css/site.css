@@ -31,10 +31,20 @@ th, td {
     float: right;
 }
 
-.message {
-    color: #e6005c;
+.logo {
+    width: 22px;
+    margin-right: 5px;
 }
 
+.message {
+    color: #e6005c;
+    float: left;
+}
+
+.container-top {
+    padding-left: 10px;
+    margin-left: 0;
+}
 
 .navbar-light .navbar-nav .nav-link {
     font-size: 20px;
@@ -58,6 +68,11 @@ label {
 label.current {
     color: #8c8c8c;
     font-weight: normal;
+}
+
+.details-file {
+    width: 100px;
+    height: 80px;
 }
 
 .btn-primary {
@@ -97,11 +112,4 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
 }

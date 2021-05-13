@@ -41,11 +41,11 @@
                     @Html.DisplayFor(model => model.Patient.Age)
                 </td>
                 <td>
-                    <img src="../images/@Html.DisplayFor(model => model.Patient.PhotoPath)" style="width:100px;">
+                    <img src="../images/@Html.DisplayFor(model => model.Patient.PhotoPath)" class="details-file">
                 </td>
                 <td>
                     <a href="../files/@Html.DisplayFor(model => model.Patient.NotesPath)" download>
-                        <img src="../images/download.png" alt="download" style="width:90px;">
+                        <img src="../images/download.png" alt="download" class="details-file">
                     </a>
                 </td>
             </tr>

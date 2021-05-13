@@ -15,9 +15,11 @@ namespace VetClinic.Models.DbModels
         [Required]
         public float Age { get; set; }
 
+        [StringLength(60, MinimumLength = 3)]
         [Display(Name = "Photo")]
         public string PhotoPath { get; set; }
 
+        [StringLength(60, MinimumLength = 3)]
         [Display(Name = "Notes")]
         public string NotesPath { get; set; }
     }
