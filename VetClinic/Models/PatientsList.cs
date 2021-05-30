@@ -59,7 +59,7 @@ namespace VetClinic.Models
             {
                 var rootPath = "wwwroot";
 
-                if (patient.PhotoPath != null &&!IsDefaultImage(patient.PhotoPath)) {
+                if (patient.PhotoPath != null && !IsDefaultImage(patient.PhotoPath)) {
                     var photoPath = Path.Combine(rootPath, "images", patient.PhotoPath);
                     File.Delete(photoPath);
                 }

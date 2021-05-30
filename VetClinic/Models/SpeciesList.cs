@@ -28,8 +28,11 @@ namespace VetClinic.Models
 
         public override void Add(Species item)
         {
-            _context.Species.Add(item);
-            _context.SaveChanges();
+            if (IsValid(item.Name))
+            {
+                _context.Species.Add(item);
+                _context.SaveChanges();
+            }
         }
 
         public override void Edit(Species item)
