@@ -28,7 +28,7 @@ namespace VetClinic.Models
 
         public override void Add(Species item)
         {
-            if (IsValid(item.Name))
+            if (IsValid(item.Name) && !Exists(item.Name))
             {
                 _context.Species.Add(item);
                 _context.SaveChanges();
@@ -73,6 +73,12 @@ namespace VetClinic.Models
         private bool IsValid(string name)
         {
             return !string.IsNullOrWhiteSpace(name) && !string.IsNullOrEmpty(name);
+        }
+
+        private bool Exists(string name)
+        {
+            var species = _context.Species.FirstOrDefault(e => e.Name == name);
+            return species != null;
         }
     }
 }
